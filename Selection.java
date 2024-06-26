@@ -17,12 +17,12 @@ public class Selection {
         tempert = keyb.nextDouble();
         if(choice == 1)
         {
-            tempert = ((tempert*9)/5)+32;
-            System.out.println("The temperature is: "+tempert+" fahrenheit degree.");
+            double result = ((tempert*9)/5)+32;
+            System.out.println("The temperature is: "+result+" fahrenheit degree.");
         }
         else if(choice == 2){
-            tempert = ((tempert-32)*5)/9;
-            System.out.println("The temperature is: "+tempert+" celcious degree.");
+            double result = ((tempert-32)*5)/9;
+            System.out.println("The temperature is: "+result+" celcious degree.");
         }
         else
         {
