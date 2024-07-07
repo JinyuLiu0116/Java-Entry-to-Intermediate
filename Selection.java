@@ -1,34 +1,51 @@
-package com.mac190.selection;
-//The condition needs to evaluate to true or false.
-//Write a program that converts from celcious to fahrenheit and
-//from fahrenheit to celcius depending on user's choice
-//first ask the user which conversion wishes to make
-//then ask for the temperature and make the appropriate conversion
+package com.mac190.practice1;
+/*
+ * aX^2 + bX + c = 0 is second order equation a != 0
+ *
+ * if a is 0, then it is a first order equatio and there is one solution = -c/b
+ * if a is not 0 then
+ * 		compute the discriminant D = b^2 - 4ac
+ * 		if D is 0 then there is one double solution which is -b/2a
+ * 		else if D is larger than 0 then there are two distinct solutions:
+ * 				X1 is -b + sqrt(D)/2a
+ * 				X2 is -b - sqrt(D)/2a
+ * 		else (D is negative) then there are no real solutions.
+ *
+ * Write a program that accepts the coefficients of a second order equation
+ * (a, b, and c) and displays the solutions to the equation.
+ *
+ *
+ Modify the program to keep runnung for as long as the user answers yes to a question
+ Do you want run the program again? [yes/no]
+ */
 import java.util.Scanner;
 public class Selection {
-    public static void main(String[] args) {
-        Scanner keyb = new Scanner(System.in);
-        int choice;
-        double tempert;
-       // boolean choice;
-        System.out.print("Enter 1: converse celcious to fahrenheit. Enter 2: converse fahrenheit to celcious.");
-        choice = keyb.nextInt();
-        System.out.println("Enter the temperature: ");
-        tempert = keyb.nextDouble();
-        if(choice == 1)
-        {
-            double result = ((tempert*9)/5)+32;
-            System.out.println("The temperature is: "+result+" fahrenheit degree.");
+    public static void main(String[] args){
+        Scanner keyb=new Scanner(System.in);
+        double a,b,c;
+        char choice='y';
+        while(Character.toLowerCase(choice)!='n') {
+            System.out.println("Enter the coefficients:");
+            a=keyb.nextDouble();
+            b=keyb.nextDouble();
+            c=keyb.nextDouble();
+            if (a == 0)
+                System.out.println("This is a first order equation, it has one solution:" + -c / b);
+            else if (a != 0) {
+                double D = b * b - 4 * a * c;
+                if (D == 0)
+                    System.out.println("This is one double solution:" + -b / (2 * a));
+                else if (D > 0) {
+                    double X1 = (-b + Math.sqrt(D)) / (2 * a);
+                    double X2 = (-b - Math.sqrt(D)) / (2 * a);
+                    System.out.println("The equation has two solutions: X1=" + X1 + ", X2=" + X2);
+                } else
+                    System.out.println("There are no real solution.");
+            }
+            System.out.print("Do you want to continue?(y/n):");
+            keyb.nextLine();//flash the keyboard
+            choice=keyb.next().charAt(0);
         }
-        else if(choice == 2){
-            double result = ((tempert-32)*5)/9;
-            System.out.println("The temperature is: "+result+" celcious degree.");
-        }
-        else
-        {
-            System.out.println("Invalid input number.");
-        }
-
-
+        System.out.print("Thank you for use.");
     }
 }
