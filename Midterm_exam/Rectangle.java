@@ -28,27 +28,23 @@ public class Rectangle {
     public double getWidth(){
         return this.width;
     }
-    public void setLength(double a){
+   public void setLength(double a){
         a=Math.abs(a);
-        if(this.getWidth()==a)
+        if(this.getWidth()==a||this.getWidth()>a)
             this.length=a;
-        if(a<this.getWidth()){
+        else{
             this.length=this.getWidth();
             this.width=a;
         }
-        else
-            this.length=a;
     }
     public void setWidth(double a){
         a=Math.abs(a);
-        if(this.getLength()==a)
+        if(this.getLength()==a||this.getLength()<a)
             this.width=a;
-        if(a>this.getLength()){
+        else{
             this.width=this.getLength();
             this.length=a;
         }
-        else
-            this.width=a;
     }
     public double area(){
         return this.getLength()*this.getWidth();
