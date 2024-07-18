@@ -14,8 +14,7 @@ public class Cube{
         this.height=side;
     }
     public Cube(double a, double b, double c){
-       double side = this.setSideOfCube(a,b,c);
-        this.base=new Rectangle(side,side);
+        double side = this.setSideOfCube(a,b,c);
         this.height=side;
     }
     public Cube(Cube c){
