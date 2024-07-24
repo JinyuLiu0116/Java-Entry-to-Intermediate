@@ -38,18 +38,30 @@ public class HelloApplication extends Application {
         BoxForText.getChildren().addAll(num1,num2);
         //creat buttons
         Button plus = new  Button("+");
-        Button minus = new  Button("-");
-        Button multiply = new  Button("*");
-        Button divide = new  Button("/");
+        Button minus = new  Button(" -");
+        Button multiply = new  Button(" *");
+        Button divide = new  Button(" /");
         Button percent = new  Button("%");
-
         VBox BoxForButton = new VBox();
         BoxForButton.getChildren().addAll(plus,minus,multiply,divide,percent);
         //create a HBox as a root to contain VBoxes
-        HBox root = new HBox();
-        root.getChildren().addAll(BoxForLab,BoxForText,BoxForButton);
+        //Label space = new Label("                        ");
+        //VBox BoxFOrSpace =new VBox();
+        //BoxFOrSpace.getChildren().add(space);
+        //HBox root = new HBox();
+        //root.getChildren().addAll(BoxForLab,BoxForText,BoxFOrSpace,BoxForButton);
+        //Scene scene = new Scene(root,320, 440);
 
-        Scene scene = new Scene(root,320, 440);
+        HBox root1 = new HBox();
+        root1.getChildren().addAll(BoxForLab,BoxForText);
+        root1.setSpacing(5);
+        HBox root2 = new HBox();
+        root2.getChildren().add(BoxForButton);
+        HBox superRoot= new HBox();
+        superRoot.getChildren().addAll(root1,root2);
+        superRoot.setSpacing(70);
+
+        Scene scene = new Scene(superRoot,320, 440);
         stage.setTitle("JavaFX demo!");
         stage.setScene(scene);
         stage.show();
