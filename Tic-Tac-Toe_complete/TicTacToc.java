@@ -12,7 +12,8 @@ import java.util.Random;
 
 public class TicTacToc implements EventHandler<ActionEvent> {
     private int[][] Tic;
-    private HBox root, H1,H2;
+    private HBox root,h1,h2,h3,H1;
+    private VBox V1;
     private Button clean;
     private Button[][] bArray;
     private int turn;
@@ -20,9 +21,9 @@ public class TicTacToc implements EventHandler<ActionEvent> {
 
     public TicTacToc(){
         Tic = new int[3][3];
-        VBox v1 = new VBox();
-        VBox v2 = new VBox();
-        VBox v3 = new VBox();
+        h1 = new HBox();
+        h2 = new HBox();
+        h3 = new HBox();
         bArray = new Button[3][3];
         for(int rows=0;rows<3;rows++){
             for(int col=0;col<3;col++){
@@ -31,11 +32,11 @@ public class TicTacToc implements EventHandler<ActionEvent> {
                 bArray[rows][col].setOnAction(this);
                 Tic[rows][col]=-1;
                 if(rows==0){
-                    v1.getChildren().add(bArray[rows][col]);
+                    h1.getChildren().add(bArray[rows][col]);
                 }else if(rows==1){
-                    v2.getChildren().add(bArray[rows][col]);
+                    h2.getChildren().add(bArray[rows][col]);
                 }else {
-                    v3.getChildren().add(bArray[rows][col]);
+                    h3.getChildren().add(bArray[rows][col]);
                 }
 
             }
@@ -48,13 +49,13 @@ public class TicTacToc implements EventHandler<ActionEvent> {
         clean.setOnAction(this);
         result=new Label("Winner: ");
 
+        V1=new VBox();
+        V1.getChildren().addAll(h1,h2,h3);
         H1=new HBox();
-        H1.getChildren().addAll(v1,v2,v3);
-        H2=new HBox();
-        H2.getChildren().addAll(clean,result);
-        H2.setSpacing(20);
+        H1.getChildren().addAll(clean,result);
+        H1.setSpacing(20);
         VBox v4 = new VBox();
-        v4.getChildren().addAll(H1,H2);
+        v4.getChildren().addAll(V1,H1);
         v4.setSpacing(30);
         root = new HBox();
         root.getChildren().addAll(v4);
@@ -189,7 +190,7 @@ public class TicTacToc implements EventHandler<ActionEvent> {
             stopGame();
             return true;
         }
-        if(Tic[0][2]==a && Tic[1][2]==a && Tic[2][0]==a) {
+        if(Tic[0][2]==a && Tic[1][1]==a && Tic[2][0]==a) {
             stopGame();
             return true;
         }
