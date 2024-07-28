@@ -70,10 +70,8 @@ public class TicTacToc implements EventHandler<ActionEvent> {
             setButton(0,0);
             if(checkWinner(1)){//1 win
                 result.setText("Winner: X player");
-                clean.pressedProperty();
             }else if(checkWinner(0)){
                 result.setText("Winner: O player");
-                clean.pressedProperty();
             }
         }else if(actionEvent.getSource().equals(bArray[0][1])){
             setButton(0,1);
