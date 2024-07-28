@@ -23,7 +23,7 @@ public class iDog extends Animal{
     public boolean equals(Object obj){
         if(obj==null) return false;
         if(this==obj) return true;
-        if(!(obj instanceof iDog)) return false;
+        if(!super.equals(obj)) return false;
         iDog d=(iDog) obj;
         return super.equals(d)&&this.getName().equals(d.getName());
     }
