@@ -68,73 +68,37 @@ public class TicTacToc implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         if(actionEvent.getSource().equals(bArray[0][0])){
             setButton(0,0);
-            if(checkWinner(1)){//1 win
-                result.setText("Winner: X player");
-            }else if(checkWinner(0)){
-                result.setText("Winner: O player");
-            }
+            setText();
         }else if(actionEvent.getSource().equals(bArray[0][1])){
             setButton(0,1);
-            if(checkWinner(1)){//1 win
-                result.setText("Winner: X player");
-            }else if(checkWinner(0)){
-                result.setText("Winner: O player");
-            }
+            setText();
         }else if(actionEvent.getSource().equals(bArray[0][2])){
             setButton(0,2);
-            if(checkWinner(1)){//1 win
-                result.setText("Winner: X player");
-            }else if(checkWinner(0)){
-                result.setText("Winner: O player");
-            }
+            setText();
         }else if(actionEvent.getSource().equals(bArray[1][0])){
             setButton(1,0);
-            if(checkWinner(1)){//1 win
-                result.setText("Winner: X player");
-            }else if(checkWinner(0)){
-                result.setText("Winner: O player");
-            }
+            setText();
         }else if(actionEvent.getSource().equals(bArray[1][1])){
             setButton(1,1);
-            if(checkWinner(1)){//1 win
-                result.setText("Winner: X player");
-            }else if(checkWinner(0)){
-                result.setText("Winner: O player");
-            }
+            setText();
         }else if(actionEvent.getSource().equals(bArray[1][2])){
             setButton(1,2);
-            if(checkWinner(1)){//1 win
-                result.setText("Winner: X player");
-            }else if(checkWinner(0)){
-                result.setText("Winner: O player");
-            }
+            setText();
         }else if(actionEvent.getSource().equals(bArray[2][0])){
             setButton(2,0);
-            if(checkWinner(1)){//1 win
-                result.setText("Winner: X player");
-            }else if(checkWinner(0)){
-                result.setText("Winner: O player");
-            }
+            setText();
         }else if(actionEvent.getSource().equals(bArray[2][1])){
             setButton(2,1);
-            if(checkWinner(1)){//1 win
-                result.setText("Winner: X player");
-            }else if(checkWinner(0)){
-                result.setText("Winner: O player");
-            }
+            setText();
         }else if(actionEvent.getSource().equals(bArray[2][2])){
             setButton(2,2);
-            if(checkWinner(1)){//1 win
-                result.setText("Winner: X player");
-            }else if(checkWinner(0)){
-                result.setText("Winner: O player");
-            }
+            setText();
         }else if(actionEvent.getSource().equals(clean)){
-            for(int i=0;i<3;i++){
-                for(int j=0;j<3;j++){
-                    Tic[i][j]=-1;
-                    bArray[i][j].setText("");
-                    bArray[i][j].setDisable(false);
+            for(int r=0;r<3;r++){
+                for(int c=0;c<3;c++){
+                    Tic[r][c]=-1;
+                    bArray[r][c].setText("");
+                    bArray[r][c].setDisable(false);
                     result.setText("Winner: ");
                 }
             }
@@ -149,51 +113,60 @@ public class TicTacToc implements EventHandler<ActionEvent> {
             bArray[r][c].setText("X");
             Tic[r][c]=1;
             turn=0;
-
         }
     }
-    public void stopGame(){
-        for(int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
-                bArray[i][j].setDisable(true);
-            }
+    public void setText(){
+        if(checkWinner(1)){//1 win
+            result.setText("Winner: X player");
+        }else if(checkWinner(0)){
+            result.setText("Winner: O player");
+        }else if(noWinner()){
+            result.setText("Winner: No winner");
         }
     }
     public boolean checkWinner(int a){
         if(Tic[0][0]==a && Tic[0][1]==a && Tic[0][2]==a) {
             stopGame();
             return true;
-        }
-        if(Tic[1][0]==a && Tic[1][1]==a && Tic[1][2]==a) {
+        }else if(Tic[1][0]==a && Tic[1][1]==a && Tic[1][2]==a) {
             stopGame();
             return true;
-        }
-        if(Tic[2][0]==a && Tic[2][1]==a && Tic[2][2]==a) {
+        }else if(Tic[2][0]==a && Tic[2][1]==a && Tic[2][2]==a) {
             stopGame();
             return true;
-        }
-        if(Tic[0][0]==a && Tic[1][0]==a && Tic[2][0]==a) {
+        }else if(Tic[0][0]==a && Tic[1][0]==a && Tic[2][0]==a) {
             stopGame();
             return true;
-        }
-        if(Tic[0][1]==a && Tic[1][1]==a && Tic[2][1]==a) {
+        }else if(Tic[0][1]==a && Tic[1][1]==a && Tic[2][1]==a) {
             stopGame();
             return true;
-        }
-        if(Tic[0][2]==a && Tic[1][2]==a && Tic[2][2]==a) {
+        }else if(Tic[0][2]==a && Tic[1][2]==a && Tic[2][2]==a) {
             stopGame();
             return true;
-        }
-        if(Tic[0][0]==a && Tic[1][1]==a && Tic[2][2]==a) {
+        }else if(Tic[0][0]==a && Tic[1][1]==a && Tic[2][2]==a) {
             stopGame();
             return true;
-        }
-        if(Tic[0][2]==a && Tic[1][1]==a && Tic[2][0]==a) {
+        }else if(Tic[0][2]==a && Tic[1][1]==a && Tic[2][0]==a) {
             stopGame();
             return true;
-        }
-        else
+        } else
             return false;
+    }
+    public boolean noWinner(){
+        for(int r=0;r<3;r++){
+            for(int c=0;c<3;c++){
+                if(Tic[r][c]==-1)
+                    return false;
+            }
+        }
+        return true;
+    }
+    public void stopGame(){
+        for(int r=0;r<3;r++){
+            for(int c=0;c<3;c++){
+                bArray[r][c].setDisable(true);
+            }
+        }
     }
 }
 //if action is coming from button b00
