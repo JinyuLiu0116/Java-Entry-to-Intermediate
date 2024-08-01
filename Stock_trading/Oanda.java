@@ -6,24 +6,24 @@ public class Oanda extends Broker implements iBroker {
             throw new Exception("Only can buy CUR type stock.");
         }
 
-        for(Position p: super.getHoldings()){
+        for(Position p: getHoldings()){
             if(p.getTicker().equals(ticker)){
                 p.setPrice(((p.getShares()*p.getPrice()+shares*price)+(float)2.5)/(p.getShares()+shares));
                 p.setShares(p.getShares()+shares);
             }else{
                 Position p1=new Position(ticker,type,shares,price);
-                super.getHoldings().add(p1);
+                getHoldings().add(p1);
             }
         }
     }
     @Override
     public double sell(String ticker, String type, int shares, float price) throws Exception {
-        for(Position p: super.getHoldings()){
+        for(Position p: getHoldings()){
             if(!p.getTicker().equals(ticker)){
                 throw new Exception("Your don't hold any position of ticker: "+ticker);
             }else{
                 if(p.getShares()<shares){
-                    super.getHoldings().remove(p);
+                    getHoldings().remove(p);
                     return p.getShares()*price;
                 }else{
                     p.setPrice((p.getShares()*p.getPrice()-shares*price)/(p.getShares()-shares));
